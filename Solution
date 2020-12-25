@@ -1,0 +1,14 @@
+use avtotrast;
+select Employeer , SUM(QuantityForEmpTemp) AS QuantityForEmp , MIN(StartTimeTemp) AS StartTime, MAX(EndTimeTemp) AS EndTime
+FROM (
+  select ProductionResources.[Name] AS Employeer, 
+  SUM(Quantity) AS QuantityForEmpTemp, 
+  MIN(MaterialPicking.RecordDate) AS StartTimeTemp, 
+  MAX(MaterialPicking.RecordDate) AS EndTimeTemp
+  FROM  MaterialPicking
+    JOIN
+      ProductionResources ON MaterialPicking.ProductionResource_id = ProductionResources.id
+  GROUP BY ProductionResources.[Name], MaterialPicking.RecordDate ) AS temptable
+  
+GROUP BY Employeer
+ORDER BY QuantityForEmp

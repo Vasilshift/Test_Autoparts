@@ -1,4 +1,4 @@
-# Test Autoparts
+# Тестовое задание с БД Автозапчасти
 
 1) Создать таблицу сотрудников: ProductionResources
 Колонки: id, Name

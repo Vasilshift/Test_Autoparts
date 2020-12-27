@@ -1,0 +1,27 @@
+CREATE TABLE [dbo].[ProductionResources]( 
+	[id] [int] NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_ProductionResources_id] PRIMARY KEY CLUSTERED (	[id] ASC)
+ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, 
+ ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY] ) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[MaterialPicking](
+	[id] [int] NOT NULL,
+	[LocationName] [nvarchar](50) NULL,
+	[MaterialName] [nvarchar](255) NULL,
+	[Quantity] [decimal](10, 0) NULL,
+	[ProductionResource_id] [int] NOT NULL,
+	[RecordDate] [datetime] NULL,
+ CONSTRAINT [PK_MaterialPicking] PRIMARY KEY CLUSTERED (	[id] ASC)
+ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+       ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MaterialPicking]  WITH CHECK ADD  CONSTRAINT [FK_MaterialPicking_ProductionResources] FOREIGN KEY([ProductionResource_id])
+REFERENCES [dbo].[ProductionResources] ([id])
+GO
+
+ALTER TABLE [dbo].[MaterialPicking] CHECK CONSTRAINT [FK_MaterialPicking_ProductionResources]
+GO

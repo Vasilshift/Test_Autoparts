@@ -1,4 +1,4 @@
-# Test Sulution Autoparts T-SQL 
+# Test Autoparts T-SQL 
 
 1) Создать таблицу сотрудников: ProductionResources
 Колонки: id, Name
